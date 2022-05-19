@@ -5,7 +5,7 @@
 
 - 轻量的大小：`7.4kb`
 - 常用的功能：单独的网络请求、统一参数的网络请求、请求拦截器、响应拦截器...
-- 由于`稳定性`和`安全性`未知，仅供学习交流使用
+- 由于 `稳定性` 和 `安全性` 未知，仅供学习交流使用
 - 实现原理机制：发起请求时 `fetchs` 会接收调用 `fetchs()` 时的实参，在 `fetchs` 中，接收这些参数，每个参数都有一个不同的函数去处理，当参数处理完成后，才会生成一个 `Request` 实列对象， `fetch` 执行时，传入这个 `Request` 实列对象，真正的发起请求。请求任务完成后，在 `then()` 中接收一个 `Response`  对象，这个对象描述了响应回来的数据，经过一些处理后 `Response`  对象中响应数据体最终成为 `Promise`  实列对象，并抛出由 `fetchs()` 返回。
 - 强烈建议 `try/catch` 与 `async/await` 配合 `fetchs` 使用。
 - 浏览器支持情况：在使用前请确保你的`浏览器`能够支持`Fetch API` ，详见：https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch
