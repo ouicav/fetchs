@@ -1,5 +1,3 @@
-[TOC]
-
 ## fetchs介绍
 
 - 简介：基于 `Fetch API` 实现的前端网络请求库
