@@ -92,26 +92,26 @@
       }
     ```
 
-    - 统一参数的请求
+  - 统一参数的请求
 
-      ```javascript
-         // 1 导入 fetchs
-              import fetchs from './fetchs.min.js'
-        
-              // 2 设置 baseUrl地址
-              const ff = fetchs({ baseUrl: 'http://jsonplaceholder.typicode.com/' })
-        
-              // 3 使用 fetchs 进行一个简单的请求
-              try {
-                const uu = await ff({
-                  url: `posts/2`
-                })
-                // 3.1 请求成功则打印响应数据
-                console.log(uu)
-              } catch (err) {
-                // 3.2 请求失败的处理操作
-              }
-      ```
+    ```javascript
+       // 1 导入 fetchs
+            import fetchs from './fetchs.min.js'
+      
+            // 2 设置 baseUrl地址
+            const ff = fetchs({ baseUrl: 'http://jsonplaceholder.typicode.com/' })
+      
+            // 3 使用 fetchs 进行一个简单的请求
+            try {
+              const uu = await ff({
+                url: `posts/2`
+              })
+              // 3.1 请求成功则打印响应数据
+              console.log(uu)
+            } catch (err) {
+              // 3.2 请求失败的处理操作
+            }
+    ```
 
   - 两种使用方式互不干扰，可在同个页面中交叉使用。
 
