@@ -4,15 +4,13 @@
 
 
 - 轻量的大小：`7.4kb`
-- 常用的功能：单独的网络请求、统一参数的网络请求、请求拦截器、响应拦截器...
-- 由于 `稳定性` 和 `安全性` 未知，仅供学习交流使用。
+- 功能：单独的网络请求、统一参数的网络请求、请求拦截器、响应拦截器...
 - 实现原理机制：发起请求时 `fetchs` 会接收调用 `fetchs()` 时的实参，在 `fetchs` 中，接收这些参数，每个参数都有一个不同的函数去处理，当参数处理完成后，才会生成一个 `Request` 实列对象， `fetch` 执行时，传入这个 `Request` 实列对象，真正的发起请求。请求任务完成后，在 `then()` 中接收一个 `Response`  对象，这个对象描述了响应回来的数据，经过一些处理后 `Response`  对象中响应数据体最终成为 `Promise`  实列对象，并抛出由 `fetchs()` 返回。
 - 需要 `try/catch` 与 `async/await` 配合 `fetchs` 使用。
 - 浏览器支持情况：在使用前请确保你的浏览器能够支持 `Fetch API` ，详见：https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch
+- 由于 `稳定性` 和 `安全性` 未知，仅供学习交流使用。
 
 ## fetchs使用步骤一：导入
-
-- 由于安全性和稳定性未知，没有发布npm包。
 
 - **导入方式一：在HTML页面中导入**
 
@@ -78,68 +76,68 @@
 
   - 单独的请求
 
+    ```javascript
+      // 1 导入 fetchs
+      import fetchs from './fetchs.min.js'
+      
+      // 2 使用 fetchs 进行一个简单的请求
+      try {
+        const uu = await fetchs({
+          url: `http://jsonplaceholder.typicode.com/comments`
+        })
+        // 2.2 请求成功则打印响应数据
+        console.log(uu)
+      } catch (err) {
+        // 2.3 请求失败的处理操作
+      }
+    ```
 
-  ```javascript
-  // 1 导入 fetchs
-  import fetchs from './fetchs.min.js'
-  
-  // 2 使用 fetchs 进行一个简单的请求
-  try {
-    const uu = await fetchs({
-      url: `http://jsonplaceholder.typicode.com/comments`
-    })
-    // 2.2 请求成功则打印响应数据
-    console.log(uu)
-  } catch (err) {
-    // 2.3 请求失败的处理操作
-  }
-  ```
+    - 统一参数的请求
 
-  - 统一参数的请求
+      ```javascript
+         // 1 导入 fetchs
+              import fetchs from './fetchs.min.js'
+        
+              // 2 设置 baseUrl地址
+              const ff = fetchs({ baseUrl: 'http://jsonplaceholder.typicode.com/' })
+        
+              // 3 使用 fetchs 进行一个简单的请求
+              try {
+                const uu = await ff({
+                  url: `posts/2`
+                })
+                // 3.1 请求成功则打印响应数据
+                console.log(uu)
+              } catch (err) {
+                // 3.2 请求失败的处理操作
+              }
+      ```
 
-
-  ```javascript
-   // 1 导入 fetchs
-        import fetchs from './fetchs.min.js'
-  
-        // 2 设置 baseUrl地址
-        const ff = fetchs({ baseUrl: 'http://jsonplaceholder.typicode.com/' })
-  
-        // 3 使用 fetchs 进行一个简单的请求
-        try {
-          const uu = await ff({
-            url: `posts/2`
-          })
-          // 3.1 请求成功则打印响应数据
-          console.log(uu)
-        } catch (err) {
-          // 3.2 请求失败的处理操作
-        }
-  ```
-
-- **两种使用方式互不干扰，可在同个页面中交叉使用。**
+  - 两种使用方式互不干扰，可在同个页面中交叉使用。
 
 ## fetchs使用步骤三：配置对象
 
 - **什么是配置对象？**
 
-  - `fetchs` 的配置对象就是当前的请求参数的集合，根据设置不同的请求参数， `fetchs` 自动把这些参数传入到生成的 `Request` 实列对象中，从而实现不同的网络请求类型。下面的请求中，配置对象就有一个基本的请求参数： `url参数` 
+  - `fetchs` 的配置对象就是当前的请求参数的集合，根据设置不同的请求参数发起请求时， `fetchs` 自动把这些参数传入到生成的 `Request` 实列对象中，从而实现不同的网络请求类型。
 
-  ```javascript
-   const uu = await fetchs({
-      url: `http://jsonplaceholder.typicode.com/comments`
-    })
-  ```
+  - 下面的请求中，配置对象就有一个基本的请求参数： `url参数` 
+
+    ```javascript
+     const uu = await fetchs({
+        url: `http://jsonplaceholder.typicode.com/comments`
+      })
+    ```
 
 - **单独的请求的配置对象**
 
   - `url参数` 是必填的，其他`参数`可以根据接口要求去配置，可有可无。
-  - 如果 `body参数` 的值是一个`object`数据类型，那么发送请求时 `fetchs` 会自动把这个对象转化为 `json数据格式` 发送。
+  - 如果 `body参数` 的值是一个`object` 数据类型，那么发送请求时 `fetchs` 会自动把这个对象转化为 `json数据格式` 发送。
   - 发送 `body参数` 的请求体时，浏览器会根据请求体的数据类型，自动配置相应的请求头(headers)。
   - 设置 `time参数` 后，发送请求时，如果服务器没有在设定的时间内有响应，那么 `fetchs` 会自动取消这次请求，并抛出错误信息由 `try/catch` 语句中的 `catch块 `的错误对象 `err` 接收。
   - 参数顺序没有固定
   - 如果不配置 `format参数` ，当请求成功响应后，那么 `fetchs` 会自动把成功响应回来的数据当作 `json格式` 以反序列化的形式转化数据，如果转化失败，那么会把响应数据当作 `xml` ，`srting`，`json` 等字符格式的数据类型转化成text数据格式, 如果还是转化失败，则抛出错误。
-  - `query参数` ，`time参数` ，`format参数` ，`progress参数 ` 这四个参数功能都是独立封装的，并不在`Request`实列对象的支持中.
+  - `query参数` ，`time参数` ，`format参数` ，`progress参数 ` 这四个参数功能都是独立封装的，并不在`Request` 实列对象的支持中.
   - 参数配置
 
   | 参数           | 说明                                           | 值的数据类型                                                 | 默认值                     |
@@ -499,7 +497,7 @@
 
 - 取消指定的网络请求
 
-  - 在每个请求中，`fetchs()`第一个回调函数是用于中断网络请求操作的，当发起请求或设置了超时时间开启定时器后就会调用这个回调函数。
+  - 在每个请求中，`fetchs()` 第一个回调函数是用于中断网络请求操作的，当发起请求或设置了超时时间开启定时器后就会调用这个回调函数。
 
   ```html
   <!DOCTYPE html>
@@ -757,3 +755,4 @@
   ```
 
   
+
