@@ -34,6 +34,21 @@ const fetchs = (obj, interrupt, progress) => {
     return obj;
   };
 
+  // 封装处理路径参数函数
+  const paramsFunction = (obj) => {
+    // 判断是否有路径参数
+    if (obj.params) {
+      // 开始遍历obj.params放到请求地址路径中
+      // 开始遍历obj.params
+      obj.params.forEach((value, index, array) => {
+        // forEach 方法遍历数组
+        // value为当前元素，index为当前元素索引号，arra代表这个数组本身
+        obj.url = obj.url + "/" + value;
+      });
+    }
+    return obj;
+  };
+
   // 封装处理查询参数函数
   const queryParameters = (obj) => {
     // 判断是否有查询参数
@@ -217,6 +232,8 @@ const fetchs = (obj, interrupt, progress) => {
   const theDefaultProcessing = (obj, abortController) => {
     // 请求方式
     requestWay(obj);
+    // 路径参数
+    paramsFunction(obj);
     // 查询参数
     queryParameters(obj);
     // 请求体
@@ -300,13 +317,13 @@ const fetchs = (obj, interrupt, progress) => {
                     // 判断data.headers.get('Content-Length')是否有效
                     if (data.headers.get("Content-Length")) {
                       // 下载百分比
-                      
+
                       // data.headers.get("Content-Length")获取get值
-                      const proportion = (ff / data.headers.get("Content-Length")) * 100;
+                      const proportion =
+                        (ff / data.headers.get("Content-Length")) * 100;
                       // 获取每个数据块的大小和数据块本身。
                       progress(value, value.length, proportion);
                     } else {
-             
                       progress(value, value.length, null);
                     }
 
@@ -442,6 +459,11 @@ const fetchs = (obj, interrupt, progress) => {
       // 判断是否有设置默认请求方式,且用户没有配置请求方式，则取默认请求方式。
       if (obj.method && !ob.method) {
         ob.method = obj.method;
+      }
+
+      // 判断是否有设置默认路径参数,且用户没有配置路径参数，则取默认路径参数。
+      if (obj.params && !ob.params) {
+        ob.params = obj.params;
       }
 
       // 判断是否有设置默认查询参数,且用户没有配置查询参数，则取默认查询参数。

@@ -146,6 +146,7 @@
   | method         | 用于指定HTTP请求的方法                         | `string`                                                     | GET                        |
   | body           | 指定请求体的内容                               | `Blob`  `BufferSource`  `FormData` `String`  `URLSearchParams`  `ReadableStream` | 否                         |
   | query          | 配置查询参数                                   | `object`                                                     | 否                         |
+  | params         | 配置路径参数                                   | `array`                                                      | 否                         |
   | headers        | 用于指定请求头                                 | `object`                                                     | 否                         |
   | time           | 配置超时时间                                   | `number`                                                     | 否                         |
   | format         | 配置转化响应体的数据类型或格式                 | `string`                                                     | json                       |
@@ -202,6 +203,7 @@
   | method         | 用于指定HTTP请求的方法                         | `string`                                                     | GET                        |
   | body           | 指定请求体的内容                               | `Blob`  `BufferSource`  `FormData` `String`  `URLSearchParams`  `ReadableStream` | 否                         |
   | query          | 配置查询参数                                   | `object`                                                     | 否                         |
+  | params         | 配置路径参数                                   | `array`                                                      | 否                         |
   | headers        | 用于指定请求头                                 | `object`                                                     | 否                         |
   | time           | 配置超时时间                                   | `number`                                                     | 否                         |
   | format         | 配置转化响应体的数据类型或格式                 | `string`                                                     | json                       |
