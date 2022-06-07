@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module">
+      // 1 导入 fetchs
+      import fetchs from './fetchs.min.js'
+
+      // 2 使用 fetchs 进行一个简单的请求
+      try {
+        // 2.1 发起get请求
+        const uu = await fetchs({
+          url: `http://jsonplaceholder.typicode.com/comments`
+        })
+        // 2.2 请求成功则打印响应数据
+        console.log(uu)
+      } catch (err) {
+        // 2.3 请求失败的处理操作
+      }
+    </script>
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
