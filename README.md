@@ -8,7 +8,6 @@
 - 实现原理机制：发起请求时 `fetchs` 会接收调用 `fetchs()` 时的实参，在 `fetchs` 中，接收这些参数，每个参数都有一个不同的函数去处理，当参数处理完成后，才会生成一个 `Request` 实列对象， `fetch` 执行时，传入这个 `Request` 实列对象，真正的发起请求。请求任务完成后，在 `then()` 中接收一个 `Response`  对象，这个对象描述了响应回来的数据，经过一些处理后 `Response`  对象中响应数据体最终成为 `Promise`  实列对象，并抛出由 `fetchs()` 返回。
 - 需要 `try/catch` 与 `async/await` 配合 `fetchs` 使用。
 - 浏览器支持情况：在使用前请确保你的浏览器能够支持 `Fetch API` ，详见：https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch
-- 由于 `稳定性` 和 `安全性` 未知，仅供学习交流使用。
 
 ## fetchs使用步骤一：导入
 
@@ -69,6 +68,33 @@
        // 2.3 请求失败的处理操作
      }
      ```
+
+- **导入方式三：依赖包导入**
+  
+  - 安装依赖
+  
+    ```
+    npm i fetchs --save
+    ```
+  
+  - 在项目中导入依赖，进行一个简单的请求
+  
+    ```js
+    // 1 导入 fetchs
+    import fetchs from 'fetchs'
+    
+    // 2 使用 fetchs 进行一个简单的请求
+    try {
+      // 2.1 发起get请求
+      const uu = await fetchs({
+        url: `http://jsonplaceholder.typicode.com/comments`
+      })
+      // 2.2 请求成功则打印响应数据
+      console.log(uu)
+    } catch (err) {
+      // 2.3 请求失败的处理操作
+    }
+    ```
 
 ## fetchs使用步骤二：请求的两种使用方式 
 
