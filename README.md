@@ -1,4 +1,4 @@
-## fetchs介绍
+## [fetchs](https://github.com/learnguos/fetchs)
 
 - 简介：基于 `Fetch API` 实现的前端网络请求库
 
@@ -8,7 +8,7 @@
 - 需要 `try/catch` 与 `async/await` 配合 `fetchs` 使用。
 - 浏览器支持情况：在使用前请确保你的浏览器能够支持 `Fetch API` ，详见：https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch
 
-## fetchs使用步骤一：导入
+## 使用步骤一：导入
 
 - **导入方式一：在HTML页面中导入**
 
@@ -80,7 +80,7 @@
   
     ```js
     // 1 导入 fetchs
-    import fetchs from 'fetchs'
+    import fetchs from 'learnguos-fetchs'
     
     // 2 使用 fetchs 进行一个简单的请求
     try {
@@ -95,7 +95,7 @@
     }
     ```
 
-## fetchs使用步骤二：请求的两种使用方式 
+## 使用步骤二：请求的两种使用方式 
 
 - **fetchs的使用有两种方式**
 
@@ -140,7 +140,7 @@
 
   - 两种使用方式互不干扰，可在同个页面中交叉使用。
 
-## fetchs使用步骤三：配置对象
+## 使用步骤三：配置对象
 
 - **什么是配置对象？**
 
@@ -242,7 +242,7 @@
   | referrer       | 用于指定HTTP得referer头部内容                  | `string`                                                     | client/about:client        |
   | referrerPolicy | 用于指定HTTP的referer头部                      | `string`                                                     | no-referrer-when-downgrade |
 
-## fetchs使用步骤四：请求拦截器
+## 使用步骤四：请求拦截器
 
 - 在请求拦截器中，你可以在请求前处理请求的配置对象 `data`
 
@@ -309,7 +309,7 @@
   ```
 
 
-## fetchs使用步骤五：响应成功拦截器
+## 使用步骤五：响应成功拦截器
 
 - 设置了响应成功拦截器只有在当前请求的响应状态码 `(200~299)之间` 会触发。
 
@@ -398,7 +398,7 @@
   </html>
   ```
 
-## fetchs使用步骤六：响应失败拦截器
+## 使用步骤六：响应失败拦截器
 
 - 设置了响应失败拦截器只有在当前请求的响应状态码 `(200~299)之外` 会触发。
 
@@ -488,7 +488,7 @@
   </html>
   ```
 
-## fetchs使用步骤七：取消请求
+## 使用步骤七：取消请求
 
 - 取消当前最新的网络请求。
 
@@ -603,7 +603,7 @@
   </html>
   ```
 
-## fetchs使用步骤八：并发处理多个异步请求
+## 使用步骤八：并发处理多个异步请求
 
 - 同时发送多个请求，并且所有的网络请求任务完成才能处理。
 
@@ -673,7 +673,7 @@
   </html>
   ```
 
-## fetchs使用步骤九：实现下载进度和获取Uin8Array数据块
+## 使用步骤九：实现下载进度和获取Uin8Array数据块
 
 - 数据传输时遵循TCP/IP协议，传输的数据是以分块( `Uin8Array数据块` )形式抵达端点的，而且速度受到网速的限制。接收端点会为此分配内存，并将收到的块写入内存。`Fetch API` 通过`ReadableStream`支持在这些块到达时就实时读取和操作这些数据。
 
@@ -733,7 +733,7 @@
   </html>
   ```
 
-## fetchs使用步骤十：请求出错的信息处理
+## 使用步骤十：请求出错的信息处理
 
 - 首先要确保你的配置对象参数正确
 
